@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<title>SportSpot</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="{% static 'styles/default.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'styles/fonts.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+</head>
+<body>
+
+<div id="logo" class="hero">
+	<h1><a href="#" class="icon icon-spinner"><span>SportSpot</span></a></h1>
+</div>
+<div id="header">
+	<div id="menu" class="container">
+		<ul>
+			<li><a href="{% url 'index' %}" {% if request.path == '/index' %}class="active"{% endif %} accesskey="1">Home</a></li>
+			<li class="nav-item dropdown {{home_page}}">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  View   <i class="fa fa-caret-down"></i>
+				</a>
+				<div id="dd" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				<a class="dropdown-item" href="{% url 'events' %}">Upcoming events</a>
+				  <a class="dropdown-item" href="{% url 'mentor' %}">Mentor Details</a>
+				  <a class="dropdown-item" href="{% url 'shortlist' %}">Shortlisted</a>
+				</div>
+			  </li>
+			<li><a href="{% url 'gallery' %}" {% if request.path == '/gallery' %}class="active"{% endif %} accesskey="3" title="">Gallery</a></li>
+			<li {% if request.path != '/index' %} class="hide" {% endif %}><a id="movedown" >About Us</a></li>
+			<li><a href="{% url 'logout' %}" accesskey="5" title="">Sign out</a></li>
+		</ul>
+	</div>
+</div>
+
+{% block content %}
+
+{% endblock content%}
+
+
+	

@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<div id="featured" class="container">
+     <div class="row">
+        <div class="title">
+        <h2>Some accomplishments and events:</h2><br>
+        </div>
+             {% for gal in gals %}
+            <div id="box1" class="column7"> <a href="#">
+                <img src="{{gal.img.url}}" width="300px" height="250px" alt="" /></a>
+                <p><div class="galdesc">{{gal.description}}</div></p>
+             </div> 
+           {% endfor %}
+</div>
+</div>
+</body>
+</html>
+
+{% endblock content %}

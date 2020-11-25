@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sport Spot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{% static 'styles/main.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'styles/fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i' %}" rel="stylesheet">
+</head>
+<body>
+	<!-- main -->
+	<div class="main-layouts wrapper">
+		<div class="box"><h2 style="font-size: 2.5em">SIGN UP</h2></div>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action="signup" method="post">
+         {% csrf_token %}
+         {% for message in messages %}
+			<h4 style="color:red;"> {{message}} </h4>
+			{% endfor %}
+         <div class="alert alert-danger" role="alert">
+          </div>
+					<input class="text" type="text" name="name" placeholder="Username" required=""><br>
+					<input class="text email" type="email" name="email" placeholder="Email" required=""><br>
+                    <input class="text" type="text" name="usn" placeholder="USN" pattern="4NI.+" required=""><br>
+                    <input class="text" type="tel" name="phone" placeholder="Phone" pattern="[0-9]{10}" required=""><br>
+                    <select name="branch" style="width:382px" class="text form-control" required="">
+                        <option value="">Branch</option>
+                        <option>Computer Science and Engineering</option>
+                        <option>Information Science and Engineering</option>
+                        <option>Electronics and Communication Engineering</option>
+                        <option>Electricals and Electronics Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Industrial Production and Engineering</option>
+                      </select> 
+                     <br>
+                    <select name="year" style="width:382px" class="text form-control" required="">
+                        <option value="">Year</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select> 
+                    <br>
+                    <select name="gender" style="width: 382px" class="text form-control" required="">
+                        <option value="">Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Others</option>
+                      </select> 
+                    <br>
+					<input class="text" id="password" type="password" name="password" placeholder="Password" pattern=".{8,}" title="Eight or more characters" required=""><br>
+					<input class="text" id="password" type="password" name="password1" placeholder="Confirm Password" required="" oninput="check(this)">
+					<script language='javascript' type='text/javascript'>
+              function check(input) {
+                if(input.value != document.getElementById('password').value) {
+                  input.setCustomValidity('Password doesnt match');
+                }
+                else {
+                   input.setCustomValidity('');
+                }
+              }
+          </script>
+          <input id="sub" type="submit" value="SIGNUP">
+				</form>
+				<p><strong>Have an Account? <a href="{% url 'login' %}"> Login!</a></strong></p>
+			</div>
+		</div>
+	</div>
+	<!-- //main -->
+</body>
+</html>

@@ -1,0 +1,177 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<script>
+    $(document).ready(function() { 
+            $("#movedown").click(function() { 
+                $(document).scrollTop($(document).height()); 
+            }); 
+        });
+</script>
+
+<style>
+    .imag {
+        background-image: url("../../../static/images/stadium2.jpg");
+        height: 80%; 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    .centered {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding-left: 20%;
+        background-color: rgba(0, 0, 0, 0.6);
+        border: 1px solid black;
+        opacity: 0.8;
+        height: 100%;
+        padding-top: 17%;
+      }
+      .centered a {
+          color: white;
+          font-size: 50px;
+      }
+      .icon {
+        position: absolute;
+        top: 50%;
+        left: 65%;
+        transform: translate(-50%,-50%);
+        width: 80px;
+        height: 60px;
+        cursor: pointer;
+      }
+      
+      .arrow {
+        position: absolute;
+        top: 25px;
+        width: 90%;
+        height: 10px;
+        background-color: #fff;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+        animation: arrow 700ms linear infinite;
+      }
+      
+      .arrow::after, .arrow::before {
+        content: '';
+        position: absolute;
+        width: 60%;
+        height: 10px;
+        right: -8px;
+        background-color: #fff;
+      }
+      
+      .arrow::after {
+        top: -12px;
+        transform: rotate(45deg);
+      }
+      
+      .arrow::before {
+        top: 12px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, .2);
+        transform: rotate(-45deg);
+      }
+
+	  textarea {
+	    font-size: 14px;
+	 }
+	
+</style>
+
+<script>
+    const $icon = document.querySelector('.icon');
+    const $arrow = document.querySelector('.arrow');
+
+    $icon.onclick = () => {
+    $arrow.animate([
+        {left: '0'},
+        {left: '10px'},
+        {left: '0'}
+    ],{
+        duration: 700,
+        iterations: Infinity
+    });
+}
+</script>
+
+<div class="container">
+    <div id="page" class="row">
+        <div id="content" class="col-sm-4 col-lg-4">
+            <div class="title">
+                <h2>Welcome <span class="byline">to our sports club website!</span></h2>
+            </div>
+            <h4><p>You can view upcoming events and register for them!</p>
+            <p>A mentor will be assigned to you if you are selected to participate in the event where you will
+			 be assured with a great experience and lots of fun. <br>Please enroll only if you have the passion 
+			 and dedication for the particular sport.</p></h4>
+        </div>
+        
+        <div id="sidebar" class="col-sm-8 col-lg-8"><a href="#"><img src="{% static 'images/pic05.jpg' %}" width="600" height="250" alt="" /></a></div>
+    </div>
+</div>
+<br><br>
+
+<div class="imag">
+    <div class="centered">
+        <a href="{% url 'events' %}">View Upcoming Events</a>
+        <div class="icon">
+            <a href="{% url 'events' %}"><div class="arrow"></div></a>
+          </div>
+    </div>
+    
+</div>
+<br>
+<br>
+<div class="container">
+<h4><strong>Write your suggestions to help the club get better.</strong></h4>
+<button type="button" style="background-color:slategrey;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Suggestion box</button>
+<br> <br>
+</div>
+
+<form action="index" method="post">
+{% csrf_token %}
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Your Suggestions</h4>
+        </div>
+        <div class="modal-body">
+		 <textarea id=placeholder="Suggestion" tabindex="5" rows="6" cols="75" name="suggestion_text" required></textarea>
+        </div>
+        <div class="modal-footer">
+			 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			 <button type="submit" class="btn btn-primary" style="background-color:slategrey;">Submit</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+</form>
+
+
+<div id="footer-wrapper">
+    <div id="footer" class="container">
+        <div class="title">
+            <h2>About Us</h2>
+        </div>
+        <h5><p>Encouraging all-round student development, NIE offers varied opportunities for sports and fitness.
+		 The college has well-equipped indoor and outdoor facilities to help students with their athletic 
+		 development and sports activities. From football, basketball, archery, and yoga to taekwondo, NIE offers 
+		 a wide spectrum of activities for students to participate in. NIE has groomed champions such as 
+		 Dr. Prasanna who made India proud as a member of the Indian spin quartet that took the Indian cricket team 
+		 to glorious heights in the 1970s. Besides these, there are various student clubs which organize and conduct 
+		 on-campus events as well as inter-collegiate sports meets.</p></h5>
+    </div>
+</div>
+
+{% endblock content %}

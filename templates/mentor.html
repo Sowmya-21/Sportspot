@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+            
+<div id="featured" class="container">
+<div class="mentrow">
+    <div class="title">
+    <br><br><h2>Mentors:</h2><br>
+    </div>    
+    {% for ment in ments %}
+    <div class="mentcolumn">
+      <div class="mentcard">
+        <img src="{{ment.img.url}}" alt="" style="width: 100%; height:40%">
+        <div class="mentcontainer">
+          <h2>{{ment.mentor}}</h2>
+          <h5><p>{{ment.email}}</p></h5>
+          <h5><p>{{ment.phone}}</p></h5>
+          <h5><p>{{ment.experience}}</p></h5>
+          
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  
+   
+</div>
+</div>
+{% endblock content %}
+
+

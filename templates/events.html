@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+{% for message in messages %}
+		  <script>
+			 alert("{{message}}")
+		  </script>
+{% endfor %}
+<div id="featured" class="container">
+	<div class="mentrow">
+		<div class="title">
+			<br><br><h2>Upcoming events</h2>
+		</div>
+		<h4><p>Hello NIEans!<br> This the list of exciting tournaments coming up, register yourself and bring back the trophy and pride to our college!</p></h4>
+	   </div>
+	   <br><br>
+			 
+		{% for eve in eves %}
+		<div class="mentcolumn">
+		  <div class="mentcard">
+			<img src="{{eve.img.url}}" alt="" style="width: 100%; height:40%">
+			<div class="mentcontainer">
+			  <h3><strong>{{eve.event_name}}</strong></h3><br>
+			  <p class="menttitle">Date: {{eve.event_date}}&emsp;&emsp;Time: {{eve.start_time}}</p>
+			  <p class="menttitle">Venue: {{eve.venue}}</p>
+			  <a href="{% url 'mentor' %}"><p class="menttitle">Mentor: {{eve.mentor.mentor}}</p></a>
+			  <p class="menttitle">Deadline to enroll: {{eve.deadline}}</p>
+			  <p>{{eve.description}}</p>
+			  
+			</div>
+		  </div>
+		</div>
+		{% endfor %}
+	  
+	   
+	</div>
+	<div class="text-center">
+		<button type="button" style="width:300px;background-color:slategrey;" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Enroll</button>
+    </div>
+
+   <!-- Modal -->
+   <form action="events" method="post">
+	 {% csrf_token %}
+	
+	 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	 <div class="modal-dialog modal-dialog-centered">
+		 <div class="modal-content">
+		 <div class="modal-header">
+			 <h2 class="modal-title">Enrolment form</h2>
+			 <h5 style="color:blue">Note:You cannot enroll for more than one event on the same dates</h5>
+			 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			 <span aria-hidden="true">&times;</span>
+			 </button>
+		 </div>
+		 <div class="modal-body">
+		 <div class="form-group">
+		  
+			 <label for="exampleFormControlInput1">Name</label>
+			 <input name="name" type="text" class="form-control" value="{{name}}" readonly>
+		 </div>
+		 <div class="form-group">
+			 <label for="exampleFormControlInput1">USN</label>
+			 <input name="usn" type="text" class="form-control" value="{{usn}}" readonly>
+		 </div>
+		 <div class="form-group">
+			 <label for="exampleFormControlSelect1">Select Events</label>
+			 <select name="event" class="form-control" id="exampleFormControlSelect1" required>
+				 <option value="">Events</option>
+				 {% for eve in eves %}
+				 <option>{{eve.event_name}}</option>
+				 {% endfor %}
+			 </select> 
+		 </div>
+		 </div>
+		 <div class="modal-footer">
+			 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			 <button type="submit" class="btn btn-primary" style="background-color:slategrey;">Enroll</button>
+		 </div>
+		 </div>
+	 </div>
+	 </div>
+	  </form>
+	 
+		 <br>
+		 <br>
+	 </body>
+	 </html>
+
+{% endblock content %}
+		
+	
+	

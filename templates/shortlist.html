@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+ {% load static %}
+{% block content %}
+<br> <br>
+  {% for key,value in mydict.items %}
+      <h2 style="text-align:center"><strong>{{key}}</strong></h2>
+       <br>
+        <table class="center" id="data">
+        <tr>
+            <th>Name</th>
+            <th>USN</th>
+            <th>Phone</th>
+        </tr>
+        {% for player in value %}
+        <tr>
+            <td>{{player.student.name}}</td>
+            <td>{{player.student.usn}}</td>
+            <td>{{player.student.phone}}</td>
+        </tr>
+      {% endfor %}
+      </table>
+      <br> <br> <br>
+  {% endfor %}
+
+{% endblock content%}
