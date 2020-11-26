@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from phone_field import PhoneField
 from django.utils.timezone import now
-from phonenumber_field.modelfields import PhoneNumberField
+#from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 class StudentRegisterForm(models.Model):
@@ -11,7 +11,7 @@ class StudentRegisterForm(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField(max_length=200,null=True)
     usn = models.CharField(max_length=20,unique=True,blank=True)
-    phone = PhoneNumberField(blank=True)
+    phone = models.CharField(max_length=200)
     branch = models.CharField(max_length=100)
     year = models.IntegerField()
     gender = models.CharField(max_length=10)
@@ -23,7 +23,7 @@ class StudentRegisterForm(models.Model):
 class Mentor(models.Model):
     mentor = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
-    phone = PhoneNumberField(blank=True)
+    phone = models.CharField(max_length=200)
     img = models.ImageField(upload_to='mentor_imgs')
     experience = models.TextField(max_length=700)
     

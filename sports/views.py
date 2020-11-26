@@ -87,7 +87,7 @@ def events(request):
             except:
                 all_events=list(Enrolment.objects.filter(student=student))
                 for one_event in all_events:
-                    if one_event.event.date==event.date:
+                    if one_event.event.event_date==event.event_date:
                         messages.info(request,"You are enrolled for other event on the same day!")
                         return render(request,"events.html",context)     
         
